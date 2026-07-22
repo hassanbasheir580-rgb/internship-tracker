@@ -6,30 +6,30 @@ The Internship Tracker is a full-stack web application designed to help students
 
 ---
 
-# Technology Stack
+## Technology Stack
 
-## Frontend
+### Frontend
 
 - React
 - React Router
 - CSS
 - Axios
 
-### Responsibilities
+**Responsibilities**
 
-- Display user interface
+- Display the user interface
 - Manage application state
 - Send API requests
 - Display internship data
 
 ---
 
-## Backend
+### Backend
 
 - Node.js
 - Express.js
 
-### Responsibilities
+**Responsibilities**
 
 - Process client requests
 - Validate incoming data
@@ -39,24 +39,22 @@ The Internship Tracker is a full-stack web application designed to help students
 
 ---
 
-## Database
+### Database
 
 - SQLite
 
-### Responsibilities
+**Responsibilities**
 
 - Store internship applications
-- Store user information
+- Store user information (future)
 - Store application notes
-- Persist all application data
+- Persist application data
 
 ---
 
-# System Architecture Diagram
+## System Architecture Diagram
 
-```
-
-```
+```text
 +----------------------+
 |      React App       |
 |      (Frontend)      |
@@ -76,15 +74,11 @@ The Internship Tracker is a full-stack web application designed to help students
 +----------------------+
 ```
 
-```markdown
-
 ---
 
-# Project Structure
+## Project Structure
 
-```
-
-```
+```text
 internship-tracker/
 │
 ├── frontend/
@@ -105,11 +99,9 @@ internship-tracker/
 └── README.md
 ```
 
-```markdown
-
 ---
 
-# Data Flow
+## Data Flow
 
 1. The user performs an action in the React application.
 2. The frontend sends an HTTP request to the Express backend.
@@ -121,7 +113,7 @@ internship-tracker/
 
 ---
 
-# Design Principles
+## Design Principles
 
 - Separation of concerns
 - Modular architecture
