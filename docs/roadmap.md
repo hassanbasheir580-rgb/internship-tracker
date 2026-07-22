@@ -24,9 +24,9 @@ Build a full-stack web application that helps students manage internship applica
 
 \- \[x] Create roadmap
 
-\- \[ ] Design system architecture
+\- \[x] Design system architecture
 
-\- \[ ] Design database
+\- \[x] Design database
 
 
 
@@ -38,9 +38,9 @@ Build a full-stack web application that helps students manage internship applica
 
 
 
-\- \[ ] Initialize Express.js
+\- \[x] Initialize Express.js
 
-\- \[ ] Configure project structure
+\- \[x] Configure project structure
 
 \- \[ ] Connect SQLite database
 
@@ -58,7 +58,7 @@ Build a full-stack web application that helps students manage internship applica
 
 
 
-\- \[ ] Initialize React
+\- \[x] Initialize React
 
 \- \[ ] Create dashboard
 
