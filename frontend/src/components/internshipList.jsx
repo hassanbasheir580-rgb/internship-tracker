@@ -1,14 +1,24 @@
 function InternshipList({ applications }) {
     return (
-        <div>
+        <div className="application-list">
             <h2>Internship Applications</h2>
-            <ul>
-                {applications.map((app) => (
-                    <li key={app.id}>
-                        <strong>{app.company}</strong> - {app.role}
-                    </li>
-                ))}
-            </ul>
+
+            {applications.length === 0 ? (
+                <p>No applications yet.</p>
+            ) : (
+                applications.map((app) => (
+                    <div key={app.id} className="application-item">
+                        <div>
+                            <h3>{app.company}</h3>
+                            <p>{app.role}</p>
+                        </div>
+
+                        <span className="status">
+                            {app.status}
+                        </span>
+                    </div>
+                ))
+            )}
         </div>
     );
 }

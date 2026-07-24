@@ -7,6 +7,10 @@ function InternshipForm({ fetchApplications }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!company.trim() || !role.trim()) {
+            alert("Please fill in all fields.");
+            return;
+        }
 
         console.log("Submit button clicked!");
 
@@ -24,6 +28,9 @@ function InternshipForm({ fetchApplications }) {
             const response = await createApplication(application);
             console.log(response);
             await fetchApplications();
+
+            window.location.reload(); // Refresh the page to show the updated list of applications
+
         } catch (error) {
             console.error(error);
         }
@@ -35,6 +42,7 @@ function InternshipForm({ fetchApplications }) {
                 <label>Company</label>
                 <input
                     type="text"
+                    placeholder="Google"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
                 />
@@ -44,6 +52,7 @@ function InternshipForm({ fetchApplications }) {
                 <label>Role</label>
                 <input
                     type="text"
+                    placeholder="Software Engineer"
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
                 />

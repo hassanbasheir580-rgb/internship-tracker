@@ -70,3 +70,97 @@ button {
 button:hover {
     background: #39539b;
 }
+
+.application-list {
+    margin-top: 30px;
+}
+
+.application-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px 20px;
+    margin-bottom: 12px;
+
+    background: white;
+    border-radius: 10px;
+
+    border: 1px solid #e5e7eb;
+}
+
+.application-item h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #111827;
+}
+
+.application-item p {
+    margin: 4px 0 0;
+    color: #6b7280;
+}
+
+.status {
+    background: #dbeafe;
+    color: #1d4ed8;
+
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.application-item {
+    background: rgb(208, 230, 236);
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.application-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.status {
+    background: #dcfce7;
+    color: #166534;
+
+    padding: 8px 18px;
+    border-radius: 999px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.application-list h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.application-list {
+    margin-top: 40px;
+}
+
+.application-item h3 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.application-item p {
+    margin-top: 6px;
+    margin-bottom: 0;
+
+    color: #6b7280;
+    font-size: 17px;
+}
