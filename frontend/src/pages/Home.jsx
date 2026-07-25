@@ -2,19 +2,20 @@ import { useState, useEffect } from "react";
 import InternshipForm from "../components/InternshipForm";
 import InternshipList from "../components/InternshipList";
 import { getApplications } from "../services/applicationService";
+import { Link } from "react-router-dom";
 
 function Home() {
     const [applications, setApplications] = useState([]);
 
-const fetchApplications = async () => {
-    console.log("fetchApplications called");
+    const fetchApplications = async () => {
+        console.log("fetchApplications called");
 
-    const data = await getApplications();
+        const data = await getApplications();
 
-    console.log("Fetched:", data);
+        console.log("Fetched:", data);
 
-    setApplications(data);
-};
+        setApplications(data);
+    };
 
     useEffect(() => {
         fetchApplications();
@@ -32,7 +33,17 @@ const fetchApplications = async () => {
                     Track all your internship applications
                 </p>
 
-                <InternshipForm fetchApplications={fetchApplications} />
+                <div className="button-group">
+
+                    <Link to="/add" className="button">
+                        Add Internship
+                    </Link>
+
+                    <Link to="/stats" className="button">
+                        View Statistics
+                    </Link>
+
+                </div>
 
                 <InternshipList applications={applications} />
 

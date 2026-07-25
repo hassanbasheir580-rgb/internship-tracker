@@ -1,9 +1,15 @@
 import { createApplication } from "../services/applicationService";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function InternshipForm({ fetchApplications }) {
+function InternshipForm() {
     const [company, setCompany] = useState("");
     const [role, setRole] = useState("");
+    const [location, setLocation] = useState("");
+    const [application_url, setApplicationUrl] = useState("");
+    const [deadline, setDeadline] = useState("");
+    const [notes, setNotes] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,19 +23,18 @@ function InternshipForm({ fetchApplications }) {
         const application = {
             company,
             role,
-            location: "",
+            location,
             status: "Saved",
-            application_url: "",
-            deadline: "",
-            notes: ""
+            application_url,
+            deadline,
+            notes
         };
 
         try {
             const response = await createApplication(application);
             console.log(response);
-            await fetchApplications();
 
-            window.location.reload(); // Refresh the page to show the updated list of applications
+            navigate("/"); // Navigate back to the home page after submission
 
         } catch (error) {
             console.error(error);
@@ -56,6 +61,46 @@ function InternshipForm({ fetchApplications }) {
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
                 />
+            </div>
+
+            <div className="form-group">
+                <label>Location</label>
+                <input
+                    type="text"
+                    placeholder="Malaysia, Cyberjaya"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                />
+            </div>
+
+            <div className="form-group">
+                <label>Application URL</label>
+                <input
+                    type="text"
+                    placeholder="https://example.com/apply"
+                    value={application_url}
+                    onChange={(e) => setApplicationUrl(e.target.value)}
+                />
+            </div>
+
+            <div className="form-group">
+                <label>Deadline</label>
+                <input
+                    type="date"
+                    value={deadline}
+                    onChange={(e) => setDeadline(e.target.value)}
+                />
+            </div>
+
+            <div className="form-group">
+                <label>Notes</label>
+                <div className="textarea">
+                <textarea
+                    placeholder="Add any notes here..."
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                />
+                </div>
             </div>
 
             <button type="submit">

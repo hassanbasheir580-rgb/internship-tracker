@@ -4,7 +4,9 @@ function InternshipList({ applications }) {
             <h2>Internship Applications</h2>
 
             {applications.length === 0 ? (
-                <p>No applications yet.</p>
+                <div className="text-center">
+                    <div>No applications yet.</div>
+                </div>
             ) : (
                 applications.map((app) => (
                     <div key={app.id} className="application-item">

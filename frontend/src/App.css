@@ -10,13 +10,14 @@ body {
 }
 
 .container {
-    width: 450px;
+    width: 90%;
+    max-width: 1350px;
     margin: 60px auto;
 }
 
 .card {
-    background: rgba(123, 132, 167, 0.925);
-    padding: 30px;
+    background: rgba(160, 165, 187, 0.925);
+    padding: 170px;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
@@ -163,4 +164,42 @@ button:hover {
 
     color: #6b7280;
     font-size: 17px;
+}
+
+.button {
+    background:#0c1427;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.button:hover {
+    background: #39539b;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #f9f9f9;
+    border-radius: 6px;
+    font-size: 15px;
+    justify-content: center;
+    resize: vertical; /* Allow vertical resizing */
+    background: #f9f9f9;
+}
+
+.text-center {
+    text-align: center;
+    color: #463838;
+    margin-bottom: 25px;
 }
