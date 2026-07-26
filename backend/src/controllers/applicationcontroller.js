@@ -1,4 +1,4 @@
-const { createApplication, getApplications } = require("../models/applicationModel");
+const { createApplication, getApplications, updateStatus } = require("../models/applicationModel");
 
 async function createApplicationController(req, res) {
     try {
@@ -30,13 +30,33 @@ async function getApplicationsController(req, res) {
     } catch (err) {
         console.error("❌ Failed to retrieve applications:", err);
 
-        res.status(500).json({ 
-            error: "Failed to retrieve applications." 
+        res.status(500).json({
+            error: "Failed to retrieve applications."
         });
     }
 }
 
+async function updateStatusController(req, res) {
+
+    try {
+
+        const id = req.params.id;
+        const newStatus = req.body.status;
+        await updateStatus(id, newStatus);
+
+        res.status(200).json({ message: "Status updated successfully" });
+
+    } catch (error) {
+
+        console.error(error);
+        res.status(500).json({ error: "Failed to update status" });
+
+    }
+
+}
+
 module.exports = {
     createApplicationController,
-    getApplicationsController
+    getApplicationsController,
+    updateStatusController
 };

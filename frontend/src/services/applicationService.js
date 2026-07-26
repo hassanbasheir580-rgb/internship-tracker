@@ -16,4 +16,17 @@ async function getApplications() {
     return response.json();
 }
 
-export { createApplication, getApplications };
+async function updateStatus(id, newStatus) {
+
+    const response = await fetch(`http://localhost:5000/applications/${id}`, {
+        method: "PUT",
+        headers: {
+            "content-type": "application/json",
+        },
+        body: JSON.stringify({ status: newStatus })
+    });
+
+    return response.json();
+}
+
+export { createApplication, getApplications, updateStatus };

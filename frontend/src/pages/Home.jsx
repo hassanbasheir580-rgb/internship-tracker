@@ -45,7 +45,10 @@ function Home() {
 
                 </div>
 
-                <InternshipList applications={applications} />
+                <InternshipList 
+                    applications={applications}
+                    fetchApplications={fetchApplications} 
+                />
 
             </div>
         </div>

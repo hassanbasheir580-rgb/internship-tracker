@@ -1,4 +1,6 @@
-function InternshipList({ applications }) {
+import { updateStatus } from "../services/applicationService";
+
+function InternshipList({ applications, fetchApplications }) {
     return (
         <div className="application-list">
             <h2>Internship Applications</h2>
@@ -15,9 +17,19 @@ function InternshipList({ applications }) {
                             <p>{app.role}</p>
                         </div>
 
-                        <span className="status">
-                            {app.status}
-                        </span>
+                        <select className={`status ${app.status.toLowerCase()}`} value={app.status} onChange={async (e) => {
+                            await updateStatus(
+                                app.id,
+                                e.target.value
+                            );
+                            await fetchApplications(); // Fetch the updated list of applications
+                        }}>
+                            <option value="Saved">Saved</option>
+                            <option value="Applied">Applied</option>
+                            <option value="Interviewing">Interviewing</option>
+                            <option value="Accepted">Accepted</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
                     </div>
                 ))
             )}

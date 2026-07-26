@@ -68,7 +68,28 @@ function getApplications() {
     });
 }
 
+function updateStatus(id, newStatus) {
+    return new Promise((resolve, reject) => {
+
+        const sql = `
+            UPDATE applications
+            SET status = ?
+            WHERE id = ?  
+        `;
+
+        db.run(sql, [newStatus, id], function (err) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve({ message: "Status updated successfully" });
+            }
+        });
+
+    })
+}
+
 module.exports = {
     createApplication,
-    getApplications
+    getApplications,
+    updateStatus
 };
