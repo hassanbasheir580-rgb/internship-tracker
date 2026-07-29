@@ -29,4 +29,21 @@ async function updateStatus(id, newStatus) {
     return response.json();
 }
 
-export { createApplication, getApplications, updateStatus };
+async function deleteApplication(id) {
+
+    const response = await fetch(`http://localhost:5000/applications/${id}`, {
+        method: "DELETE",
+        headers: {
+            "content-type": "application/json",
+        }
+    });
+
+    return response.json();
+}
+
+export { 
+    createApplication, 
+    getApplications, 
+    updateStatus,
+    deleteApplication
+};

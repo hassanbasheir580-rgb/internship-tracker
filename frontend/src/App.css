@@ -17,7 +17,7 @@ body {
 
 .card {
     background: rgba(160, 165, 187, 0.925);
-    padding: 170px;
+    padding: 50px;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
@@ -58,7 +58,7 @@ input:focus {
 }
 
 button {
-    width: 100%;
+    width: 15%;
     padding: 12px;
     border: none;
     border-radius: 6px;
@@ -80,25 +80,14 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding: 16px 20px;
+    width: 100%;
+    padding: 16px 30px;
     margin-bottom: 12px;
-
+    
     background: white;
     border-radius: 10px;
 
     border: 1px solid #e5e7eb;
-}
-
-.application-item h3 {
-    margin: 0;
-    font-size: 18px;
-    color: #111827;
-}
-
-.application-item p {
-    margin: 4px 0 0;
-    color: #6b7280;
 }
 
 .status {
@@ -110,20 +99,6 @@ button:hover {
 
     font-size: 14px;
     font-weight: 600;
-}
-
-.application-item {
-    background: rgb(208, 230, 236);
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 18px 20px;
-    margin-bottom: 14px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .application-item:hover {
@@ -221,17 +196,17 @@ button:hover {
 .status {
     background: #dcfce7;
     color: #303131;
-
-    padding: 8px 18px;
+    width: 130px;
+    padding: 4px 4px;
     border-radius: 999px;
-
+    text-align: center;
     font-size: 14px;
     font-weight: 600;
 }
 
 .status.accepted {
-    background: #95e2b0;
-    color: #066029;
+    background: #00d54b;
+    color: #fefffe;
 
     padding: 8px 18px;
     border-radius: 999px;
@@ -260,4 +235,15 @@ button:hover {
 
     font-size: 14px;
     font-weight: 600;
+}
+
+.delete-button {
+    background: #c60000;
+    width: 80px;
+    border-radius: 999px;
+}
+
+.application-actions {
+    display: flex;
+    gap: 20px;
 }

@@ -88,8 +88,28 @@ function updateStatus(id, newStatus) {
     })
 }
 
+function deleteApplication(id) {
+    return new Promise((resolve, reject) => {
+
+        const sql = `
+            DELETE FROM applications
+            WHERE id = ?
+        `;
+
+        db.run(sql, [id], function (err) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve({ message: "Application deleted successfully" });
+            }
+        })
+
+    });
+}
+
 module.exports = {
     createApplication,
     getApplications,
-    updateStatus
+    updateStatus,
+    deleteApplication
 };

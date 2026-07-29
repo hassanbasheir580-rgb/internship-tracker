@@ -1,4 +1,4 @@
-import { updateStatus } from "../services/applicationService";
+import { deleteApplication, updateStatus } from "../services/applicationService";
 
 function InternshipList({ applications, fetchApplications }) {
     return (
@@ -17,6 +17,7 @@ function InternshipList({ applications, fetchApplications }) {
                             <p>{app.role}</p>
                         </div>
 
+                    <div className="application-actions">
                         <select className={`status ${app.status.toLowerCase()}`} value={app.status} onChange={async (e) => {
                             await updateStatus(
                                 app.id,
@@ -30,6 +31,16 @@ function InternshipList({ applications, fetchApplications }) {
                             <option value="Accepted">Accepted</option>
                             <option value="Rejected">Rejected</option>
                         </select>
+
+                        <button
+                            type="button"
+                            className="delete-button" onClick={async () => {
+                                await deleteApplication(app.id);
+                                await fetchApplications();
+                        }}>
+                            Delete
+                        </button>
+                    </div>
                     </div>
                 ))
             )}

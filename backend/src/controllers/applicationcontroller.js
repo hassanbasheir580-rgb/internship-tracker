@@ -1,4 +1,4 @@
-const { createApplication, getApplications, updateStatus } = require("../models/applicationModel");
+const { createApplication, getApplications, updateStatus, deleteApplication } = require("../models/applicationModel");
 
 async function createApplicationController(req, res) {
     try {
@@ -55,8 +55,27 @@ async function updateStatusController(req, res) {
 
 }
 
+async function deleteApplicationController(req, res){
+    
+    try {
+
+        const id = req.params.id;
+        await deleteApplication(id)
+
+        res.status(200).json({ message : "Application deleted successfully" })
+
+    } catch (error) {
+
+        console.error(error);
+        res.status(500).json({ error : "Failed to delete application" })
+
+    }
+
+}
+
 module.exports = {
     createApplicationController,
     getApplicationsController,
-    updateStatusController
+    updateStatusController,
+    deleteApplicationController
 };
