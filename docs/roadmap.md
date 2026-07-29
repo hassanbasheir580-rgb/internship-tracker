@@ -42,11 +42,11 @@ Build a full-stack web application that helps students manage internship applica
 
 \- \[x] Configure project structure
 
-\- \[ ] Connect SQLite database
+\- \[x] Connect SQLite database
 
-\- \[ ] Create Internship model
+\- \[x] Create Internship model
 
-\- \[ ] Build REST API
+\- \[x] Build REST API
 
 
 
@@ -60,15 +60,15 @@ Build a full-stack web application that helps students manage internship applica
 
 \- \[x] Initialize React
 
-\- \[ ] Create dashboard
+\- \[x] Create dashboard
 
-\- \[ ] Internship list
+\- \[x] Internship list
 
-\- \[ ] Add internship form
+\- \[x] Add internship form
 
 \- \[ ] Edit internship
 
-\- \[ ] Delete internship
+\- \[x] Delete internship
 
 
 
@@ -84,7 +84,7 @@ Build a full-stack web application that helps students manage internship applica
 
 \- \[ ] Filter by status
 
-\- \[ ] Dashboard statistics
+\- \[x] Dashboard statistics
 
 \- \[ ] Deadline reminders
 
