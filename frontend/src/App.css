@@ -196,7 +196,7 @@ button:hover {
 .status {
     background: #dcfce7;
     color: #303131;
-    width: 130px;
+    width: 120px;
     padding: 4px 4px;
     border-radius: 999px;
     text-align: center;
@@ -246,4 +246,15 @@ button:hover {
 .application-actions {
     display: flex;
     gap: 20px;
+}
+
+.link {
+    text-decoration: none;
+    background: #00ddff;
+    border: 1px solid;
+    border-color: #001442;
+    padding: 10px;
+    text-align: center;
+    width: 80px;
+    border-radius: 999px;
 }

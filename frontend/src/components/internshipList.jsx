@@ -25,12 +25,21 @@ function InternshipList({ applications, fetchApplications }) {
                             );
                             await fetchApplications(); // Fetch the updated list of applications
                         }}>
-                            <option value="Saved">Saved</option>
-                            <option value="Applied">Applied</option>
-                            <option value="Interviewing">Interviewing</option>
-                            <option value="Accepted">Accepted</option>
-                            <option value="Rejected">Rejected</option>
+                            <option value=" Saved">Saved</option>
+                            <option value=" Applied">Applied</option>
+                            <option value=" Interviewing">Interviewing</option>
+                            <option value=" Accepted">Accepted</option>
+                            <option value=" Rejected">Rejected</option>
                         </select>
+
+                        <a
+                            className="link" 
+                            href = {app.application_url} 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Visit
+                        </a>
 
                         <button
                             type="button"
