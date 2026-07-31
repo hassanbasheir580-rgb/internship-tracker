@@ -6,6 +6,13 @@ import { Link } from "react-router-dom";
 
 function Home() {
     const [applications, setApplications] = useState([]);
+    const [searchValue, setSearchValue] = useState("");
+
+    const filteredApplications = applications.filter((app) => {
+
+        return app.company.toLowerCase().includes(searchValue.toLowerCase());
+
+    })
 
     const fetchApplications = async () => {
         console.log("fetchApplications called");
@@ -29,10 +36,6 @@ function Home() {
                     Internship Tracker
                 </h1>
 
-                <p className="subtitle">
-                    Track all your internship applications
-                </p>
-
                 <div className="button-group">
 
                     <Link to="/add" className="button">
@@ -45,9 +48,11 @@ function Home() {
 
                 </div>
 
-                <InternshipList 
-                    applications={applications}
-                    fetchApplications={fetchApplications} 
+                <InternshipList
+                    applications={filteredApplications}
+                    fetchApplications={fetchApplications}
+                    searchValue={searchValue}
+                    setSearchValue={setSearchValue}
                 />
 
             </div>
