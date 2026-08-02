@@ -1,5 +1,7 @@
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 async function createApplication(application) {
-    const response = await fetch("http://localhost:5000/applications", {
+    const response = await fetch(`${API_URL}/applications`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -11,14 +13,14 @@ async function createApplication(application) {
 }
 
 async function getApplications() {
-    const response = await fetch("http://localhost:5000/applications");
+    const response = await fetch(`${API_URL}/applications`);
 
     return response.json();
 }
 
 async function updateStatus(id, newStatus) {
 
-    const response = await fetch(`http://localhost:5000/applications/${id}`, {
+    const response = await fetch(`${API_URL}/applications/${id}`, {
         method: "PUT",
         headers: {
             "content-type": "application/json",
@@ -31,7 +33,7 @@ async function updateStatus(id, newStatus) {
 
 async function deleteApplication(id) {
 
-    const response = await fetch(`http://localhost:5000/applications/${id}`, {
+    const response = await fetch(`${API_URL}/applications/${id}`, {
         method: "DELETE",
         headers: {
             "content-type": "application/json",
