@@ -258,3 +258,22 @@ button:hover {
     width: 80px;
     border-radius: 999px;
 }
+
+@media (max-width: 600px) {
+    .application-item {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .application-actions {
+        width: 100%;
+        gap: 8px;
+        justify-content: space-between;
+    }
+
+    .application-actions > * {
+        flex: 1;
+    }
+}
