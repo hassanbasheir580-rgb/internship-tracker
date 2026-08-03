@@ -28,6 +28,11 @@ function Home() {
         fetchApplications();
     }, []);
 
+    function handleLogout() {
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+    }
+
     return (
         <div className="container">
             <div className="card">
@@ -45,6 +50,10 @@ function Home() {
                     <Link to="/stats" className="button">
                         View Statistics
                     </Link>
+
+                    <button className="button" onClick={handleLogout}>
+                        Logout
+                    </button>
 
                 </div>
 

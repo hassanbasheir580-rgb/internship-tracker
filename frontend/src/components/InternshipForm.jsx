@@ -103,7 +103,7 @@ function InternshipForm() {
                 </div>
             </div>
 
-            <button type="submit">
+            <button className="saveInternship" type="submit">
                 Save Internship
             </button>
         </form>

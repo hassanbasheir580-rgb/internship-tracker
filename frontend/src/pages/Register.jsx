@@ -38,6 +38,10 @@ function Register() {
             <div className="auth-card">
                 <h1>Create Account</h1>
 
+                <p className="auth-subtitle">
+                    Create an account to start tracking your applications.
+                </p>
+
                 <form onSubmit={handleSubmit}>
                     <input
                         type="email"

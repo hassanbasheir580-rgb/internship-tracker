@@ -31,6 +31,10 @@ function Login() {
             <div className="auth-card">
                 <h1>Login</h1>
 
+                <p className="auth-subtitle">
+                    Sign in to manage your internship applications.
+                </p>
+
                 <form onSubmit={handleSubmit}>
                     <input
                         type="email"
