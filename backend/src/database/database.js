@@ -1,36 +1,49 @@
-const sqlite3 = require("sqlite3");
+const { Pool } = require("pg");
 require("dotenv").config();
 
-const databasePath = process.env.DATABASE_PATH;
-
-const db = new sqlite3.Database(databasePath, (err) => {
-  if (err) {
-    console.error("Error opening database:", err);
-  } else {
-    console.log("Connected to the SQLite database.");
-    db.run(`
-        CREATE TABLE IF NOT EXISTS applications (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            company TEXT NOT NULL,
-            role TEXT NOT NULL,
-            location TEXT,
-            application_url TEXT,
-            status TEXT NOT NULL DEFAULT 'Saved',
-            applied_date DATE,
-            deadline DATE,
-            notes TEXT,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-        );
-        `,
-        (err) => {
-        if (err) {
-            console.error("❌ Failed to create applications table:", err);
-        } else {
-            console.log("✅ Applications table ready.");
-        }
-    });
-    }
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false,
+    },
 });
 
-module.exports = db;
+async function initializeDatabase() {
+    try {
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS users (
+                id SERIAL PRIMARY KEY,
+                email VARCHAR(255) UNIQUE NOT NULL,
+                password_hash TEXT NOT NULL,
+                is_verified BOOLEAN DEFAULT FALSE,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+        `);
+
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS applications (
+                id SERIAL PRIMARY KEY,
+                user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+                company TEXT NOT NULL,
+                role TEXT NOT NULL,
+                location TEXT,
+                application_url TEXT,
+                status TEXT NOT NULL DEFAULT 'Saved',
+                applied_date DATE,
+                deadline DATE,
+                notes TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+        `);
+
+        console.log("✅ Connected to PostgreSQL");
+        console.log("✅ Database tables ready");
+    } catch (err) {
+        console.error("❌ Database initialization failed:", err);
+    }
+}
+
+initializeDatabase();
+
+module.exports = pool;

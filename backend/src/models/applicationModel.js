@@ -1,115 +1,85 @@
-const db = require("../database/database");
+const pool = require("../database/database");
 
-function createApplication(application) {
-    return new Promise((resolve, reject) => {
+async function createApplication(application) {
 
-        const company = application.company;
-        const role = application.role;
-        const location = application.location;
-        const status = application.status;
-        const application_url = application.application_url;
-        const deadline = application.deadline;
-        const notes = application.notes;
+    const {
+        company,
+        role,
+        location,
+        status,
+        application_url,
+        deadline,
+        notes,
+    } = application;
 
-        const sql = `
-            INSERT INTO applications (
-                company,
-                role,
-                location,
-                status,
-                application_url,
-                deadline,
-                notes
-            )
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        `;
+    const sql = `
+        INSERT INTO applications (
+            company,
+            role,
+            location,
+            status,
+            application_url,
+            deadline,
+            notes
+        )
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+    `;
 
-        db.run(
-            sql,
-            [
-                company,
-                role,
-                location,
-                status,
-                application_url,
-                deadline,
-                notes
-            ],
-            function (err) {
-
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve();
-                }
-
-            }
-        );
-
-    });
+    await pool.query(sql, [
+        company,
+        role,
+        location,
+        status,
+        application_url,
+        deadline,
+        notes,
+    ]);
 }
 
-function getApplications() {
-    return new Promise((resolve, reject) => {
+async function getApplications() {
 
-        const sql = `
-            SELECT *
-            FROM applications
-        `;
+    const sql = `
+        SELECT *
+        FROM applications
+    `;
 
-        db.all(sql, function (err, rows) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(rows);
-            }
-        });
+    const result = await pool.query(sql);
 
-    });
+    return result.rows;
 }
 
-function updateStatus(id, newStatus) {
-    return new Promise((resolve, reject) => {
+async function updateStatus(id, newStatus) {
 
-        const sql = `
-            UPDATE applications
-            SET status = ?
-            WHERE id = ?  
-        `;
+    const sql = `
+        UPDATE applications
+        SET status = $1
+        WHERE id = $2
+    `;
 
-        db.run(sql, [newStatus, id], function (err) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ message: "Status updated successfully" });
-            }
-        });
+    await pool.query(sql, [newStatus, id]);
 
-    })
+    return {
+        message: "Status updated successfully",
+    };
 }
 
-function deleteApplication(id) {
-    return new Promise((resolve, reject) => {
+async function deleteApplication(id) {
 
-        const sql = `
-            DELETE FROM applications
-            WHERE id = ?
-        `;
+    const sql = `
+        DELETE FROM applications
+        WHERE id = $1
+    `;
 
-        db.run(sql, [id], function (err) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ message: "Application deleted successfully" });
-            }
-        })
+    await pool.query(sql, [id]);
 
-    });
+    return {
+        message: "Application deleted successfully",
+    };
 }
 
 module.exports = {
     createApplication,
     getApplications,
     updateStatus,
-    deleteApplication
+    deleteApplication,
 };
