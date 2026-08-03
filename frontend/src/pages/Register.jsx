@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { register } from "../api/authApi";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Register() {
     const [email, setEmail] = useState("");
@@ -8,8 +8,7 @@ function Register() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-
-    const navigate = useNavigate();
+    const [registrationComplete, setRegistrationComplete] = useState(false);
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -24,13 +23,33 @@ function Register() {
 
         try {
             await register(email, password);
-
-            navigate("/login");
+            setRegistrationComplete(true);
         } catch (err) {
             setError(err.message);
         } finally {
             setLoading(false);
         }
+    }
+
+    if (registrationComplete) {
+        return (
+            <div className="auth-container">
+                <div className="auth-card">
+                    <h1>Check Your Email</h1>
+
+                    <p className="auth-subtitle">
+                        We've sent a verification link to <strong>{email}</strong>.
+                        Please verify your email before logging in.
+                    </p>
+
+                    <p>
+                        <Link to="/login">
+                            Back to Login
+                        </Link>
+                    </p>
+                </div>
+            </div>
+        );
     }
 
     return (
@@ -63,9 +82,7 @@ function Register() {
                         type="password"
                         placeholder="Confirm Password"
                         value={confirmPassword}
-                        onChange={(event) =>
-                            setConfirmPassword(event.target.value)
-                        }
+                        onChange={(event) => setConfirmPassword(event.target.value)}
                         required
                     />
 
@@ -80,7 +97,7 @@ function Register() {
 
                 <p>
                     Already have an account?{" "}
-                    <a href="/login">Login</a>
+                    <Link to="/login">Login</Link>
                 </p>
             </div>
         </div>

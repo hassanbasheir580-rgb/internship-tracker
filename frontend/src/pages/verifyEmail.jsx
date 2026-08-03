@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate, Link } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -7,6 +7,7 @@ function VerifyEmail() {
     const [searchParams] = useSearchParams();
     const [status, setStatus] = useState("verifying");
     const [message, setMessage] = useState("Verifying your email...");
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function verifyEmail() {
@@ -32,7 +33,10 @@ function VerifyEmail() {
                 }
 
                 setStatus("success");
-                setMessage("Your email has been verified successfully.");
+                setMessage("Your email has been verified successfully. Redirecting you to login...");
+                setTimeout(() => {
+                    navigate("/login");
+                }, 2000);
             } catch (error) {
                 setStatus("error");
                 setMessage(error.message);
@@ -40,7 +44,7 @@ function VerifyEmail() {
         }
 
         verifyEmail();
-    }, [searchParams]);
+    }, [searchParams, navigate]);
 
     return (
         <div className="auth-container">
