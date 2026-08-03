@@ -3,6 +3,8 @@ const express = require("express");
 require("dotenv").config();
 
 const applicationRoutes = require("./routes/applicationRoutes");
+const authRoutes = require("./routes/authRoutes");
+
 require("./database/database");
 
 const app = express();
@@ -13,6 +15,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 app.use("/applications", applicationRoutes);
+app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => {
     res.send("Internship Tracker Backend is running!");

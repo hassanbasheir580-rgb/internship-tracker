@@ -1,29 +1,35 @@
-const { createApplication, getApplications, updateStatus, deleteApplication } = require("../models/applicationModel");
+const {
+    createApplication,
+    getApplications,
+    updateStatus,
+    deleteApplication
+} = require("../models/applicationModel");
 
 async function createApplicationController(req, res) {
     try {
         const application = req.body;
+        const userId = req.user.id;
 
-        await createApplication(application);
+        await createApplication(application, userId);
 
         res.status(201).json({
             message: "Application created successfully."
         });
 
     } catch (err) {
-
         console.error(err);
 
         res.status(500).json({
             error: "Failed to create application."
         });
-
     }
 }
 
 async function getApplicationsController(req, res) {
     try {
-        const applications = await getApplications();
+        const userId = req.user.id;
+
+        const applications = await getApplications(userId);
 
         res.status(200).json(applications);
 
@@ -37,40 +43,44 @@ async function getApplicationsController(req, res) {
 }
 
 async function updateStatusController(req, res) {
-
     try {
-
-        const id = req.params.id;
+        const id = Number(req.params.id);
         const newStatus = req.body.status;
-        await updateStatus(id, newStatus);
+        const userId = req.user.id;
 
-        res.status(200).json({ message: "Status updated successfully" });
+        await updateStatus(id, newStatus, userId);
 
-    } catch (error) {
+        res.status(200).json({
+            message: "Status updated successfully"
+        });
 
-        console.error(error);
-        res.status(500).json({ error: "Failed to update status" });
+    } catch (err) {
+        console.error(err);
 
+        res.status(500).json({
+            error: "Failed to update status"
+        });
     }
-
 }
 
-async function deleteApplicationController(req, res){
-    
+async function deleteApplicationController(req, res) {
     try {
+        const id = Number(req.params.id);
+        const userId = req.user.id;
 
-        const id = req.params.id;
-        await deleteApplication(id)
+        await deleteApplication(id, userId);
 
-        res.status(200).json({ message : "Application deleted successfully" })
+        res.status(200).json({
+            message: "Application deleted successfully"
+        });
 
-    } catch (error) {
+    } catch (err) {
+        console.error(err);
 
-        console.error(error);
-        res.status(500).json({ error : "Failed to delete application" })
-
+        res.status(500).json({
+            error: "Failed to delete application"
+        });
     }
-
 }
 
 module.exports = {
