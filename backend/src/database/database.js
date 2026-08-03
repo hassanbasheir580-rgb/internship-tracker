@@ -16,8 +16,20 @@ async function initializeDatabase() {
                 email VARCHAR(255) UNIQUE NOT NULL,
                 password_hash TEXT NOT NULL,
                 is_verified BOOLEAN DEFAULT FALSE,
+                verification_token TEXT,
+                verification_token_expires TIMESTAMP,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
+        `);
+
+        await pool.query(`
+            ALTER TABLE users
+            ADD COLUMN IF NOT EXISTS verification_token TEXT
+        `);
+
+        await pool.query(`
+            ALTER TABLE users
+            ADD COLUMN IF NOT EXISTS verification_token_expires TIMESTAMP
         `);
 
         await pool.query(`
