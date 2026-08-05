@@ -35,16 +35,16 @@ function Register() {
         return (
             <div className="auth-container">
                 <div className="auth-card">
-                    <h1>Check Your Email</h1>
+                    <h1>Account Created</h1>
 
                     <p className="auth-subtitle">
-                        We've sent a verification link to <strong>{email}</strong>.
-                        Please verify your email before logging in.
+                        Your account has been created successfully.
+                        You can now log in.
                     </p>
 
                     <p>
                         <Link to="/login">
-                            Back to Login
+                            Continue to Login
                         </Link>
                     </p>
                 </div>
