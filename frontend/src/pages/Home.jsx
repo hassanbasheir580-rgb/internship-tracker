@@ -52,7 +52,7 @@ function Home() {
                     </Link>
 
                     <button className="button" onClick={handleLogout}>
-                        Logout
+                        ↩
                     </button>
 
                 </div>
